@@ -60,11 +60,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
+            FilterResults results = new FilterResults();
             String query = constraint.toString();
+
             if (query.isEmpty()) {
                 //tempList ha apla backup ahe. jevha search query empty hoil tevha hya backup madhun
                 //original list baher kadhaychi which is the Full proof list.
-                arrayList = tempList;
+                results.values = tempList;
             } else {
                 //filtered list la empty karaycha after each typed or deleted character and punha
                 //filtered list loop laun populate karaychi as done below.
@@ -76,12 +78,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                     }
                 }
                 //finally arraylist ch publish hote, so filtered list arraylist madhe takaychi.
-                arrayList = filteredList;
+                results.values = filteredList;
             }
 
-            //ha part fakta publishResults() paryanta arraylist la pohochavnyasathi ahe.
-            FilterResults results = new FilterResults();
-            results.values = arrayList;
             return results;
         }
 
@@ -95,21 +94,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
-        private ConstraintLayout rowItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.textView = itemView.findViewById(R.id.textView);
-            this.rowItem = itemView.findViewById(R.id.rowitem);
-
-            rowItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, String.valueOf(arrayList.get(getAdapterPosition())),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

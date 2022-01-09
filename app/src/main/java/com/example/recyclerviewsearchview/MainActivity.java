@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     ArrayList<ModelClass> arrayList = new ArrayList<>();
-    String[] data = new String[]{"a1", "a2", "a3", "aa", "abc", "b1", "b2", "b3"};
+    String[] data = new String[]{"India", "USA", "China", "France", "Russia", "Brazil", "Australia", "Africa"};
     MyAdapter myAdapter;
     SearchView searchView;
 
